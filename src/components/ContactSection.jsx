@@ -81,7 +81,7 @@ export default function ContactSection() {
             filter: "blur(100px)",
           }}
         />
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-20 relative z-10">
+        <div className="w-full max-w-7xl mx-auto px-6 lg:px-16 relative z-10">
 
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -150,7 +150,7 @@ export default function ContactSection() {
         </div>
 
         {/* Footer */}
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-20 mt-24">
+        <div className="w-full max-w-7xl mx-auto px-6 lg:px-16 mt-24">
           <div className="border-t border-[rgba(255,255,255,0.04)] pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
             <span className="text-[12px] text-[#5c5c63] tracking-[0.08em] font-light">
               &copy; {new Date().getFullYear()} Wins Duan — All rights reserved.
