@@ -1,39 +1,62 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { FiArrowDown } from "react-icons/fi";
 import heroBg from "/hero-bg.png";
 
 export default function HeroSection() {
+  const parallaxRef = useRef(null);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (parallaxRef.current) {
+        parallaxRef.current.style.transform = `translateY(${window.scrollY * 0.35}px)`;
+      }
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
-      {/* Photo background */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src={heroBg}
-          alt=""
-          className="w-full h-full object-cover"
-        />
+      {/* Parallax photo background */}
+      <div className="absolute inset-0 z-0" style={{ transform: "translateY(0)" }}>
+        <div ref={parallaxRef} className="absolute inset-[-20%]">
+          <img
+            src={heroBg}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-        {/* Dark overlays — create depth and keep text readable */}
-        <div className="absolute inset-0 bg-[#0d0d0d]/60" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0d0d0d]/45 via-transparent to-[#0d0d0d]" />
+        {/* Dark overlays */}
+        <div className="absolute inset-0 bg-[#08080a]/55" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#08080a]/30 via-transparent to-[#08080a]" />
+        {/* Ambient light blob — matches sunset photo */}
+        <div
+          className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full opacity-[0.06]"
+          style={{
+            background: "radial-gradient(ellipse, rgba(200,160,100,0.6) 0%, transparent 70%)",
+            filter: "blur(80px)",
+          }}
+        />
       </div>
 
       {/* Content */}
       <div className="relative z-10 max-w-[1200px] mx-auto px-6 lg:px-20 w-full flex flex-col items-center text-center">
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-[#E5A93C] text-sm lg:text-base tracking-[0.22em] uppercase mb-6 font-semibold"
+          transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          className="text-[#5c5c63] text-xs lg:text-sm tracking-[0.28em] uppercase mb-8 font-medium"
         >
           Visual Designer &amp; Brand Strategist
         </motion.p>
 
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 36 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight leading-[1.05] text-[#f5f5f5] mb-8"
+          transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+          className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-[-0.03em] leading-[1.04] text-[#ededee] mb-10"
         >
           Crafting Digital
           <br />
@@ -43,29 +66,23 @@ export default function HeroSection() {
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-[#888888] text-lg lg:text-xl max-w-lg mb-14 font-light leading-relaxed"
+          transition={{ duration: 0.8, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          className="text-[#8b8b90] text-base lg:text-lg max-w-lg mb-16 font-light leading-relaxed"
         >
-          I design brand identities, digital products, and AI-driven visual
-          experiences that resonate with clarity and purpose.
+          Brand identity, digital products, and AI-driven visual experiences —
+          crafted with clarity and purpose.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex gap-5"
+          transition={{ duration: 0.8, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
+          className="flex gap-4"
         >
-          <a
-            href="#projects"
-            className="px-9 py-4 bg-[#E5A93C] text-[#000000] text-sm font-semibold tracking-wider rounded-full hover:bg-amber-400 transition-all duration-300"
-          >
+          <a href="#projects" className="btn-primary">
             View My Work
           </a>
-          <a
-            href="#contact"
-            className="px-9 py-4 border border-[rgba(229,169,60,0.35)] text-[#E5A93C] text-sm font-semibold tracking-wider rounded-full hover:border-[#E5A93C] hover:text-[#E5A93C] hover:shadow-[0_0_24px_rgba(229,169,60,0.15)] transition-all duration-300"
-          >
+          <a href="#contact" className="btn-ghost">
             Get in Touch
           </a>
         </motion.div>
@@ -75,17 +92,17 @@ export default function HeroSection() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
+        transition={{ delay: 1.4 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
       >
-        <span className="text-xs tracking-[0.22em] text-[#888888] uppercase font-semibold">
+        <span className="text-[11px] tracking-[0.26em] text-[#5c5c63] uppercase font-medium">
           Scroll
         </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
         >
-          <FiArrowDown className="text-[#E5A93C]" size={18} />
+          <FiArrowDown className="text-[#5c5c63]" size={16} />
         </motion.div>
       </motion.div>
     </section>

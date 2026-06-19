@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -10,9 +10,15 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const hideTimeout = useRef(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    let lastY = 0;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 40);
+      lastY = y;
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -21,8 +27,8 @@ export default function Navbar() {
     <motion.header
       initial={{ y: -80 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         scrolled ? "glass" : "bg-transparent"
       }`}
     >
@@ -30,27 +36,27 @@ export default function Navbar() {
         {/* Logo */}
         <a
           href="#"
-          className="text-lg font-semibold tracking-widest text-[#f5f5f5] hover:text-[#E5A93C] transition-colors duration-300"
+          className="text-base font-medium tracking-[0.16em] text-[#ededee] transition-colors duration-500"
         >
-          WINS<span className="text-[#E5A93C]">.</span>
+          WINS DUAN
         </a>
 
         {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-12">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium tracking-wider text-[#888888] hover:text-[#f5f5f5] transition-colors duration-300 hover-underline"
+              className="text-sm font-medium tracking-[0.08em] text-[#8b8b90] hover:text-[#ededee] transition-colors duration-400 hover-underline"
             >
               {link.name}
             </a>
           ))}
           <a
             href="#contact"
-            className="ml-4 px-5 py-2 text-sm font-semibold tracking-wider border border-[rgba(229,169,60,0.3)] rounded-full text-[#E5A93C] hover:bg-[#E5A93C]/10 hover:shadow-[0_0_20px_rgba(229,169,60,0.12)] transition-all duration-300"
+            className="btn-ghost ml-2"
           >
-            Get in touch
+            联系我
           </a>
         </div>
 
@@ -62,15 +68,15 @@ export default function Navbar() {
         >
           <motion.span
             animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-            className="block w-5 h-px bg-text-primary"
+            className="block w-5 h-px bg-[#ededee]"
           />
           <motion.span
             animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="block w-5 h-px bg-text-primary"
+            className="block w-5 h-px bg-[#ededee]"
           />
           <motion.span
             animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-            className="block w-5 h-px bg-text-primary"
+            className="block w-5 h-px bg-[#ededee]"
           />
         </button>
       </nav>
@@ -82,19 +88,27 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
             className="md:hidden glass overflow-hidden"
           >
-            <div className="px-6 lg:px-20 py-6 flex flex-col gap-6">
+            <div className="px-6 py-8 flex flex-col gap-6">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-lg font-medium text-text-secondary hover:text-text-primary transition-colors"
+                  className="text-lg font-medium text-[#8b8b90] hover:text-[#ededee] transition-colors"
                 >
                   {link.name}
                 </a>
               ))}
+              <a
+                href="#contact"
+                onClick={() => setMobileOpen(false)}
+                className="btn-ghost justify-center"
+              >
+                联系我
+              </a>
             </div>
           </motion.div>
         )}

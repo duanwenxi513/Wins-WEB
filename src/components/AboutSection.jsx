@@ -9,61 +9,59 @@ const stats = [
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-32 lg:py-36">
+    <section id="about" className="relative py-32 lg:py-40">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5 }}
-          className="mb-20"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-24"
         >
-          <p className="section-title">About ↓</p>
+          <p className="section-label">About</p>
           <h2 className="section-heading">关于我</h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-[380px_1fr] gap-20 lg:gap-28 items-start">
+        <div className="grid lg:grid-cols-[1fr_1fr] gap-16 lg:gap-32 items-center">
           {/* Left */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col items-center lg:items-start text-center lg:text-left"
           >
-            <div className="relative mb-10">
-              <div className="w-44 h-44 lg:w-52 lg:h-52 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.08)] flex items-center justify-center">
-                <span className="text-[#E5A93C] text-6xl font-extralight tracking-tighter">
+            {/* Avatar */}
+            <div className="relative mb-12">
+              <div className="w-48 h-48 lg:w-56 lg:h-56 rounded-full border border-[rgba(255,255,255,0.06)] flex items-center justify-center bg-[rgba(255,255,255,0.015)]">
+                <span className="text-[#ededee] text-7xl font-light tracking-tighter">
                   W
                 </span>
               </div>
             </div>
 
-            <h2 className="text-[36px] font-extrabold text-[#f5f5f5] mb-3 tracking-tight">
+            <h2 className="text-[36px] font-semibold text-[#ededee] mb-4 tracking-[-0.02em]">
               Wins Duan
             </h2>
-            <p className="text-[#E5A93C] text-sm tracking-[0.22em] uppercase mb-10 leading-relaxed">
+            <p className="text-[#5c5c63] text-sm tracking-[0.14em] uppercase mb-12 font-medium">
               Visual Designer / AI Designer
               <br />
               Brand Strategist
             </p>
 
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-[#E5A93C] text-[#000000] text-sm font-semibold rounded-full hover:bg-amber-400 transition-all duration-300 mb-10"
-            >
-              <FiDownload size={15} />
+            <a href="#" className="btn-primary mb-12">
+              <FiDownload size={14} />
               下载简历 PDF
             </a>
 
-            <div className="flex flex-col gap-4 text-sm text-[#888888]">
+            <div className="flex flex-col gap-4 text-sm text-[#8b8b90] font-light">
               <span className="flex items-center gap-3 justify-center lg:justify-start">
-                <FiMapPin size={14} />
+                <FiMapPin size={13} className="text-[#5c5c63]" />
                 Shanghai, China
               </span>
               <span className="flex items-center gap-3 justify-center lg:justify-start">
-                <FiMail size={14} />
+                <FiMail size={13} className="text-[#5c5c63]" />
                 hello@winsduan.com
               </span>
             </div>
@@ -74,13 +72,13 @@ export default function AboutSection() {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="text-base leading-relaxed text-[#888888] mb-6 font-light max-w-lg">
+            <p className="text-base leading-relaxed text-[#8b8b90] mb-8 font-light">
               我是一名跨领域设计师，深耕视觉品牌设计、AI 驱动创意工具与用户体验设计。
               擅长在美学与技术的交汇处创造具有持久印象的品牌体验。
             </p>
-            <p className="text-sm leading-relaxed text-[#666666] font-light mb-14 max-w-lg">
+            <p className="text-sm leading-relaxed text-[#5c5c63] mb-16 font-light">
               过去八年，我先后与多家创业公司、设计机构和全球品牌合作，覆盖数字产品设计、
               品牌策略与创意指导。我注重用设计解决问题，用视觉传递价值，用技术拓展创意的边界。
             </p>
@@ -89,7 +87,7 @@ export default function AboutSection() {
               {stats.map((stat) => (
                 <div key={stat.label}>
                   <div className="stat-number mb-2">{stat.value}</div>
-                  <div className="text-xs tracking-[0.18em] text-[#666666] uppercase">
+                  <div className="text-[11px] tracking-[0.16em] text-[#5c5c63] uppercase font-medium">
                     {stat.label}
                   </div>
                 </div>

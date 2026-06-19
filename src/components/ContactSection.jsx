@@ -26,41 +26,41 @@ export default function ContactSection() {
     <section id="contact" className="relative">
 
       {/* ── Testimonials ── */}
-      <div className="py-32 lg:py-36">
+      <div className="py-32 lg:py-40">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5 }}
-            className="mb-20"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-24"
           >
-            <p className="section-title">Testimonials ↓</p>
+            <p className="section-label">Testimonials</p>
             <h2 className="section-heading">合作评价</h2>
           </motion.div>
 
-          <div className="grid lg:grid-cols-3 gap-8 lg:gap-10">
+          <div className="grid lg:grid-cols-3 gap-6 lg:gap-8">
             {testimonials.map((item, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.4, delay: i * 0.07 }}
-                className="card p-9 lg:p-10 card-lift relative"
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                className="card card-lift p-9 lg:p-10 relative"
               >
-                <span className="absolute top-5 right-7 text-5xl text-[rgba(255,255,255,0.03)] font-serif leading-none select-none">
+                <span className="absolute top-5 right-7 text-5xl text-[rgba(255,255,255,0.02)] font-serif leading-none select-none">
                   &ldquo;
                 </span>
-                <p className="text-sm leading-relaxed text-[#888888] mb-7 relative z-10">
+                <p className="text-sm leading-relaxed text-[#8b8b90] mb-8 relative z-10 font-light">
                   {item.quote}
                 </p>
                 <div>
-                  <div className="text-sm font-semibold text-[#f5f5f5]">
+                  <div className="text-sm font-medium text-[#ededee] tracking-[-0.01em]">
                     {item.author}
                   </div>
-                  <div className="text-xs text-[#666666] mt-1">
+                  <div className="text-[12px] text-[#5c5c63] mt-1.5 font-light">
                     {item.role}
                   </div>
                 </div>
@@ -72,25 +72,33 @@ export default function ContactSection() {
       </div>
 
       {/* ── Contact CTA ── */}
-      <div className="relative py-32 lg:py-36 text-center">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
+      <div className="relative py-32 lg:py-40 text-center">
+        {/* Ambient glow */}
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full opacity-[0.025] pointer-events-none"
+          style={{
+            background: "radial-gradient(ellipse, rgba(200,200,200,0.5) 0%, transparent 70%)",
+            filter: "blur(100px)",
+          }}
+        />
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-20 relative z-10">
 
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="section-title"
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="section-label"
           >
-            Contact ↓
+            Contact
           </motion.p>
 
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.06 }}
-            className="section-heading mb-8"
+            transition={{ duration: 0.6, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+            className="section-heading mb-10"
           >
             Let&rsquo;s Build
             <br />
@@ -101,8 +109,8 @@ export default function ContactSection() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.1 }}
-            className="text-sm text-[#888888] max-w-md mx-auto mb-14 leading-relaxed"
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            className="text-sm text-[#8b8b90] max-w-md mx-auto mb-16 leading-relaxed font-light"
           >
             如果你有项目想要合作，或者只是想打个招呼，欢迎随时联系我。
           </motion.p>
@@ -111,19 +119,13 @@ export default function ContactSection() {
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.14 }}
-            className="flex flex-col sm:flex-row gap-5 justify-center mb-16"
+            transition={{ duration: 0.6, delay: 0.14, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-20"
           >
-            <a
-              href="mailto:hello@winsduan.com"
-              className="inline-flex items-center justify-center gap-2 px-10 py-4 bg-[#E5A93C] text-[#000000] text-sm font-semibold rounded-full hover:bg-amber-400 transition-all duration-300"
-            >
+            <a href="mailto:hello@winsduan.com" className="btn-primary">
               hello@winsduan.com
             </a>
-            <a
-              href="#"
-              className="inline-flex items-center justify-center gap-2 px-10 py-4 border border-[rgba(229,169,60,0.35)] text-[#E5A93C] text-sm font-semibold rounded-full hover:bg-[#E5A93C]/10 hover:shadow-[0_0_24px_rgba(229,169,60,0.15)] transition-all duration-300"
-            >
+            <a href="#" className="btn-ghost">
               开始合作
             </a>
           </motion.div>
@@ -133,15 +135,15 @@ export default function ContactSection() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: 0.2 }}
-            className="flex items-center justify-center gap-8 text-sm text-[#666666]"
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center justify-center gap-8 text-sm text-[#5c5c63]"
           >
             <a href="#" className="hover-underline">Behance</a>
-            <span className="text-[rgba(255,255,255,0.08)]">/</span>
+            <span className="text-[rgba(255,255,255,0.06)]">/</span>
             <a href="#" className="hover-underline">Dribbble</a>
-            <span className="text-[rgba(255,255,255,0.08)]">/</span>
+            <span className="text-[rgba(255,255,255,0.06)]">/</span>
             <a href="#" className="hover-underline">LinkedIn</a>
-            <span className="text-[rgba(255,255,255,0.08)]">/</span>
+            <span className="text-[rgba(255,255,255,0.06)]">/</span>
             <a href="#" className="hover-underline">GitHub</a>
           </motion.div>
 
@@ -149,11 +151,11 @@ export default function ContactSection() {
 
         {/* Footer */}
         <div className="max-w-[1200px] mx-auto px-6 lg:px-20 mt-24">
-          <div className="border-t border-[rgba(255,255,255,0.06)] pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <span className="text-xs text-[#666666] tracking-wider">
-              &copy; {new Date().getFullYear()} Wins Duan &mdash; All rights reserved.
+          <div className="border-t border-[rgba(255,255,255,0.04)] pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <span className="text-[12px] text-[#5c5c63] tracking-[0.08em] font-light">
+              &copy; {new Date().getFullYear()} Wins Duan — All rights reserved.
             </span>
-            <span className="text-xs text-[#666666] tracking-wider">
+            <span className="text-[12px] text-[#5c5c63] tracking-[0.08em] font-light">
               Designed &amp; Built by Wins Duan
             </span>
           </div>

@@ -21,34 +21,42 @@ const skillGroups = [
 
 export default function SkillsSection() {
   return (
-    <section className="relative py-32 lg:py-36">
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-20">
+    <section className="relative py-32 lg:py-40">
+      {/* Ambient light */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full opacity-[0.03] pointer-events-none"
+        style={{
+          background: "radial-gradient(circle, rgba(200,200,200,0.5) 0%, transparent 70%)",
+          filter: "blur(100px)",
+        }}
+      />
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-20 relative z-10">
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5 }}
-          className="mb-20"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-24"
         >
-          <p className="section-title">Skills ↓</p>
+          <p className="section-label">Skills</p>
           <h2 className="section-heading">核心优势</h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-8 lg:gap-10">
+        <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
           {skillGroups.map((group, i) => (
             <motion.div
               key={group.category}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
               className="card card-lift p-10 lg:p-12"
             >
-              <h3 className="text-lg font-bold text-[#f5f5f5] mb-6 tracking-tight">
+              <h3 className="text-base font-semibold text-[#ededee] mb-6 tracking-[-0.01em]">
                 {group.category}
               </h3>
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-2">
                 {group.tags.map((tag) => (
                   <span key={tag} className="tag">
                     {tag}
